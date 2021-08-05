@@ -33,7 +33,7 @@ class GraphDirected:
         #verificamos si esta vacia la lista de vertices para insertar
         if not self.vertexs.first:
             self.vertexs.push(nwVertex)
-            return True
+            return 1
 
         #buscamos el nuevo vertice y si no existe lo insertamos 
         if not self.vertexs.search(vertexId,lambda a,b:self.comparrisonFun(a,b)):

@@ -10,7 +10,6 @@ class Node:
         self.value=value
         self.next=None
         
-
 class LinkedList:
     def __init__(self):
         self.first=None
@@ -21,10 +20,8 @@ class LinkedList:
             self.first=Node(value)
             return True
         
-            
         count=0
         current=self.first
-
         
         if index==count:
                 current.next=self.first

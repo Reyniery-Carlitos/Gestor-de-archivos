@@ -25,30 +25,26 @@ def typeFileChoosed(typeFile):
 	# Si el tipo de archivo es una carpeta
 	if typeFile == "Carpeta":
 		#Funcion que manda a llamar a la clase crear folder
-		# def createFolder():
-		create.createNewFolder("Carpeta1")
-		listboxLeft.append("Carpeta1")
-		# textBox = TextBox(app, text="", command=createFolder)
+		def createFolder():
+			create.createNewFolder("Carpeta1")
+			listboxLeft.append("Carpeta1")
+		
+		textBox = TextBox(app, text="")
+		textBox.when_key_released = createFolder
 	
 	# Si no es una carpeta
 	else:
 		#Funcion que manda a llamar a la clase crear archivo
-		# def createFile():
-		create.createNewFile("Nuevo.txt")
+		def createFile():
+			create.createNewFile("Nuevo.txt")
+			listboxLeft.append("Nuevo.txt")
 		
-		# textBox = TextBox(app, text="", command=createFile)
+		textBox = TextBox(app, text="")
+		textBox.when_key_released = createFile
 
 #Elegira que creara el usuario
 def typeFile():
 	typeFile = Combo(boxPrincipalContainerListBoxLeft,align="bottom", options=["Carpeta", "Archivo"], command=typeFileChoosed)
-
-# createButton = PushButton(app, text="Create", command=typeFile)
-
-# def mensaje(mensajeNuevo):
-# 	text = Text(app, text=mensajeNuevo)
-# 	print(mensajeNuevo)
-
-# texto = TextBox(app, multiline=True, text="", width=200 command=mensaje)
 
 #Caja Superior, la que contendra el buscador.
 boxContainerTopBar = Box(app,width="fill", height=70, border=0.5, align="top")
@@ -56,6 +52,7 @@ boxContainerTopBar.set_border(1, "#e5e5e5")
 
 #Texto Search
 textSearch = Text(boxContainerTopBar, text="Sample Files", size=12,font="Fira Code")
+textSearch.when_right_button_pressed = typeFile
 
 # Caja lateral izquierda donde se contendran las rutas a los archivos.
 boxContainerPaths = Box(app, width=200, height="fill", border=0.5, align="left")
@@ -110,13 +107,9 @@ listboxRight = ListBox(boxPrincipalContainerListBoxRight, items=[], height="fill
 
 #Click derecho y agregar archivos
 listboxLeft.when_right_button_pressed = typeFile
-listboxLeft.append(1)
-createButton = PushButton(boxPrincipalContainerListBoxLeft, align="bottom", text="Create", command=typeFile)
 
-# CopyButton = PushButton(app, command = copy.NewCopy())
-# moveButton = PushButton(app, command = move)
-# renameButton = PushButton(app, command = rename)
-# cutButton = PushButton(app, command = cut)
+#Click derecho y agregar archivos
+listboxRight.when_right_button_pressed = typeFile
 
 app.display()
 
