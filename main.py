@@ -5,15 +5,53 @@
 Version: 0.1.0
 Date: 08/03/2021
 """
+"""
+@author ojvallecillo@unah.hn
+@version 0.1.0
+@fecha 2021/08/03
+"""
 
+from Core.GraphDirected import *
+from Core.Create import *
 from guizero import *
 from os import *
 
 app = App(title="Gestor de Archivos", height=600, width=1000, bg="#ffffff")
 
+#Al momento de elegir el tipo de archivo
+def typeFileChoosed(typeFile):
+	create = Create()
+	
+	# Si el tipo de archivo es una carpeta
+	if typeFile == "Carpeta":
+		#Funcion que manda a llamar a la clase crear folder
+		# def createFolder():
+		create.createNewFolder("Carpeta1")
+		listboxLeft.append("Carpeta1")
+		# textBox = TextBox(app, text="", command=createFolder)
+	
+	# Si no es una carpeta
+	else:
+		#Funcion que manda a llamar a la clase crear archivo
+		# def createFile():
+		create.createNewFile("Nuevo.txt")
+		
+		# textBox = TextBox(app, text="", command=createFile)
+
+#Elegira que creara el usuario
+def typeFile():
+	typeFile = Combo(boxPrincipalContainerListBoxLeft,align="bottom", options=["Carpeta", "Archivo"], command=typeFileChoosed)
+
+# createButton = PushButton(app, text="Create", command=typeFile)
+
+# def mensaje(mensajeNuevo):
+# 	text = Text(app, text=mensajeNuevo)
+# 	print(mensajeNuevo)
+
+# texto = TextBox(app, multiline=True, text="", width=200 command=mensaje)
+
 #Caja Superior, la que contendra el buscador.
 boxContainerTopBar = Box(app,width="fill", height=70, border=0.5, align="top")
-
 boxContainerTopBar.set_border(1, "#e5e5e5")
 
 #Texto Search
@@ -69,6 +107,16 @@ boxPrincipalContainerListBoxRight = Box(boxInsideContainerListBoxRight,width="fi
 #List Box
 listboxLeft = ListBox(boxPrincipalContainerListBoxLeft, items=[], height="fill", width="fill", align="top")
 listboxRight = ListBox(boxPrincipalContainerListBoxRight, items=[], height="fill", width="fill", align="top", visible=1)
+
+#Click derecho y agregar archivos
+listboxLeft.when_right_button_pressed = typeFile
+listboxLeft.append(1)
+createButton = PushButton(boxPrincipalContainerListBoxLeft, align="bottom", text="Create", command=typeFile)
+
+# CopyButton = PushButton(app, command = copy.NewCopy())
+# moveButton = PushButton(app, command = move)
+# renameButton = PushButton(app, command = rename)
+# cutButton = PushButton(app, command = cut)
 
 app.display()
 
