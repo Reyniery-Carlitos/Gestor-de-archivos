@@ -7,7 +7,6 @@
 """
 
 class Edge:
-    
     def __init__(self,vertexInitial,vertexEnd,weight=1):            
         self.vertexInitial=vertexInitial
         self.vertexEnd=vertexEnd

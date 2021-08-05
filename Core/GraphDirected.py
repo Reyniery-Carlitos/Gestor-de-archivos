@@ -73,7 +73,6 @@ class GraphDirected:
                 nwEdge.weight=weight
             return True
         
-       
     #imprime la version texto del grafo en forma de diccionario
     def __str__(self):
             result="\n{"

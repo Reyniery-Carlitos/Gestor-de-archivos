@@ -25,34 +25,31 @@ def typeFileChoosed(typeFile):
 	# Si el tipo de archivo es una carpeta
 	if typeFile == "Carpeta":
 		#Funcion que manda a llamar a la clase crear folder
-		def createFolder():
-			create.createNewFolder("Carpeta1")
-			listboxLeft.append("Carpeta1")
+		def createFolder():	
+			# create.createNewFolder()
+			listboxLeft.append(textBox.value)
 		
-		textBox = TextBox(app, text="")
-		textBox.when_key_released = createFolder
+		textBox = TextBox(app, text="", command=createFolder)
 	
 	# Si no es una carpeta
 	else:
 		#Funcion que manda a llamar a la clase crear archivo
 		def createFile():
-			create.createNewFile("Nuevo.txt")
-			listboxLeft.append("Nuevo.txt")
+			create.createNewFile("Archivo.txt")
+			listboxLeft.append("Archivo.txt")
 		
-		textBox = TextBox(app, text="")
-		textBox.when_key_released = createFile
+		textBox = TextBox(app, text="", command=createFile)
 
 #Elegira que creara el usuario
 def typeFile():
 	typeFile = Combo(boxPrincipalContainerListBoxLeft,align="bottom", options=["Carpeta", "Archivo"], command=typeFileChoosed)
 
 #Caja Superior, la que contendra el buscador.
-boxContainerTopBar = Box(app,width="fill", height=70, border=0.5, align="top")
+boxContainerTopBar = Box(app,width="fill", height=50, border=0.5, align="top")
 boxContainerTopBar.set_border(1, "#e5e5e5")
 
 #Texto Search
 textSearch = Text(boxContainerTopBar, text="Sample Files", size=12,font="Fira Code")
-textSearch.when_right_button_pressed = typeFile
 
 # Caja lateral izquierda donde se contendran las rutas a los archivos.
 boxContainerPaths = Box(app, width=200, height="fill", border=0.5, align="left")
@@ -65,34 +62,37 @@ boxContainerListBox.set_border(1, "#e5e5e5")
 # Caja sub-mayor izquierda, contenida dentro de la caja que contendra los listbox
 boxInsideContainerListBoxLeft = Box(boxContainerListBox, width="fill", height="fill", align="left")
 
+# Caja sub-mayor Derecha, contenida dentro de la caja que contendra los listbox
 boxInsideContainerListBoxRight = Box(boxContainerListBox, width="fill", height="fill", align="right")
 
 #Cajas de barras de estado superior 1. - Izquierda
-boxStatusBarTopListBoxLeft = Box(boxInsideContainerListBoxLeft,width="fill", height=50, align="top")
+boxStatusBarTopListBoxLeft = Box(boxInsideContainerListBoxLeft,width="fill", height=40, align="top")
 boxStatusBarTopListBoxLeft.set_border(1, "#e5e5e5")
 
 #Cajas de barras de estado superior 1. - Derecha
-boxStatusBarTopListBoxRight = Box(boxInsideContainerListBoxRight,width="fill", height=50, align="top")
+boxStatusBarTopListBoxRight = Box(boxInsideContainerListBoxRight,width="fill", height=40, align="top")
 
 # Texto Mis Archivos - Izquierda
-titleMyFiles = Text(boxStatusBarTopListBoxLeft, text="My Files", size=12, align="left", font="Fira Code")
+titleMyFiles = Text(boxStatusBarTopListBoxLeft, text="My Files", size=11, align="left", font="Fira Code")
 
 # Texto Mis Archivos - Derecha
-titleMyFiles = Text(boxStatusBarTopListBoxRight, text="My Files", size=12, align="left", font="Fira Code")
+titleMyFiles = Text(boxStatusBarTopListBoxRight, text="My Files", size=11, align="left", font="Fira Code")
 
 #Cajas de barras de estado superior 2. - Izquierda
-boxStatusBar2TopListBoxLeft = Box(boxInsideContainerListBoxLeft,width="fill", height=50, align="top")
+boxStatusBar2TopListBoxLeft = Box(boxInsideContainerListBoxLeft,width="fill", height=30, align="top")
 boxStatusBar2TopListBoxLeft.set_border(1, "#e5e5e5")
 
 #Cajas de barras de estado superior 2. - Derecha
-boxStatusBar2TopListBoxRight = Box(boxInsideContainerListBoxRight,width="fill", height=50, align="top")
+boxStatusBar2TopListBoxRight = Box(boxInsideContainerListBoxRight,width="fill", height=30, align="top")
 boxStatusBar2TopListBoxRight.set_border(1, "#e5e5e5")
 
 # Texto Nombre de archivos - Izquierda
 titleMyFiles = Text(boxStatusBar2TopListBoxLeft, text="Name", size=10, align="left", font="Fira Code")
+titleSize = Text(boxStatusBar2TopListBoxLeft, text="Size", size=10, align="right", font="Fira Code")
 
 # Texto Nombre de archivos - Derecha
 titleMyFiles = Text(boxStatusBar2TopListBoxRight, text="Name", size=10, align="left", font="Fira Code")
+titleSize = Text(boxStatusBar2TopListBoxRight, text="Size", size=10, align="right", font="Fira Code")
 
 #Caja principal de los lixtBox
 
