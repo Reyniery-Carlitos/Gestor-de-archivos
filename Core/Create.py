@@ -30,11 +30,11 @@ class Create():
 		print("se imprimen los vertices del graphDirected: {}".format(self.graph.vertexs))
 		print("se imprimen la cantidad de vertices del graphDirected: {}".format(len(self.graph)))
 	# Funcion para crear nuevo archivo
-	def createNewFile(self, nombre="", edge=""):
+	def createNewFile(self, nombre=""):
 		if self.graph.add(nombre) == True:
 			newFile = open(nombre, "w")
 			self.graph.add(nombre)
-			self.edges.edge(edge)
+			# self.edges.edge(edge)
 		else:
 			self.count += 1
 			newFileName = (f"{nombre}-copia"+str(self.count))

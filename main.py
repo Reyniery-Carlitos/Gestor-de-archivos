@@ -25,21 +25,25 @@ def typeFileChoosed(typeFile):
 	# Si el tipo de archivo es una carpeta
 	if typeFile == "Carpeta":
 		#Funcion que manda a llamar a la clase crear folder
-		def createFolder():	
-			# create.createNewFolder()
-			listboxLeft.append(textBox.value)
+		def createFolder(confirm):	
+			if confirm.key == "\r":
+				create.createNewFolder(textBox.value)
+				listboxLeft.append(textBox.value)
 		
-		textBox = TextBox(app, text="", command=createFolder)
+		textBox = TextBox(app, text="")
+		textBox.when_key_pressed = createFolder		
 	
 	# Si no es una carpeta
 	else:
 		#Funcion que manda a llamar a la clase crear archivo
-		def createFile():
-			create.createNewFile("Archivo.txt")
-			listboxLeft.append("Archivo.txt")
+		def createFile(confirm):
+			if confirm.key == "\r":
+				create.createNewFile(textBox.value)
+				listboxLeft.append(textBox.value)
 		
-		textBox = TextBox(app, text="", command=createFile)
-
+		textBox = TextBox(app, text="")
+		textBox.when_key_pressed = createFile
+		
 #Elegira que creara el usuario
 def typeFile():
 	typeFile = Combo(boxPrincipalContainerListBoxLeft,align="bottom", options=["Carpeta", "Archivo"], command=typeFileChoosed)
