@@ -17,27 +17,45 @@ class Create():
 		self.count = 0
 
 	# Funcion para Crear nueva carpeta
-	def createNewFolder(self, nombre=""):
-		if self.graph.add(nombre) == True:
-			newFolder = os.mkdir(nombre)
-			self.graph.add(nombre)
+	def createNewFolder(self, name="", edge=None):
+		if self.graph.add(name) == True:
+			self.graph.add(name)
+			
+			# Comprobar que si no existe un a edge, entonces la edge sera la root.
+			if edge == None:
+				newFolder = os.mkdir(name)
+			
+			# De lo contrario se crearan los archivos dentro de la arista que se le especifique.
+			else:
+				newFolder = os.mkdir(edge + "/" + name)
+				self.edges.edge(edge, name)
 		else:
 			self.count += 1
-			newFolderName = (f"{nombre}-copia"+str(self.count))
+			newFolderName = (f"{name}-copia"+str(self.count))
 			newFolder = os.mkdir(newFolderName)
 			self.graph.add(newFolderName)
 
 		print("se imprimen los vertices del graphDirected: {}".format(self.graph.vertexs))
 		print("se imprimen la cantidad de vertices del graphDirected: {}".format(len(self.graph)))
+	
 	# Funcion para crear nuevo archivo
-	def createNewFile(self, nombre=""):
-		if self.graph.add(nombre) == True:
-			newFile = open(nombre, "w")
-			self.graph.add(nombre)
-			# self.edges.edge(edge)
+	def createNewFile(self, name=""):
+		if self.graph.add(name) == True:
+			newFile = open(name, "w")
+			self.graph.add(name)
+
+			# Comprobar que si no existe un a edge, entonces la edge sera la root.
+			if edge == "":
+				newFolder = os.mkdir(name)
+		
+			# De lo contrario se crearan los archivos dentro de la arista que se le especifique.
+			else:
+				newFile = open(edge + "/" + name, "w")
+				self.edges.edge(name, edge)
+
 		else:
 			self.count += 1
-			newFileName = (f"{nombre}-copia"+str(self.count))
+			newFileName = (f"{name}-copia"+str(self.count))
 			newFile = open(newFileName, "w")
 			self.graph.add(newFileName)
 

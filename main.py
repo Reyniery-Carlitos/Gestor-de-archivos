@@ -27,7 +27,7 @@ def typeFileChoosed(typeFile):
 		#Funcion que manda a llamar a la clase crear folder
 		def createFolder(confirm):	
 			if confirm.key == "\r":
-				create.createNewFolder(textBox.value)
+				create.createNewFolder(textBox.value, listboxLeft.value)
 				listboxLeft.append(textBox.value)
 		
 		textBox = TextBox(app, text="")
@@ -43,7 +43,7 @@ def typeFileChoosed(typeFile):
 		
 		textBox = TextBox(app, text="")
 		textBox.when_key_pressed = createFile
-		
+
 #Elegira que creara el usuario
 def typeFile():
 	typeFile = Combo(boxPrincipalContainerListBoxLeft,align="bottom", options=["Carpeta", "Archivo"], command=typeFileChoosed)

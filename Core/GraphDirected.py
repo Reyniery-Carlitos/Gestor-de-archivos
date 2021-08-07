@@ -45,8 +45,10 @@ class GraphDirected:
     def edge(self,vertexOriginId,vertexDestinationId,weight=1):          
         # primero obtenemos el vertice Origen que recibimos como parametro
         vertexOrigin=self.vertexs.get(vertexOriginId,lambda a,b:self.comparrisonFun(a,b))
+        
         #obtenemos el Vertice Destino de la lista de vertices
         vertexDestination=self.vertexs.get(vertexDestinationId,lambda a,b:self.comparrisonFun(a,b))
+        
         #verificamos si tienen aristas
         if not vertexOrigin.edges.first:
             vertexOrigin.edges.push(Edge(vertexOrigin,vertexDestination))
