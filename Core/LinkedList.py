@@ -10,6 +10,7 @@ class Node:
         self.value=value
         self.next=None
         
+
 class LinkedList:
     def __init__(self):
         self.first=None
@@ -20,8 +21,10 @@ class LinkedList:
             self.first=Node(value)
             return True
         
+            
         count=0
         current=self.first
+
         
         if index==count:
                 current.next=self.first
@@ -41,12 +44,19 @@ class LinkedList:
         prev.next=Node(value)
         return True     
             
-    def search(self,vertexId,comparrissonFun=None):   
+           
+            
+
+    def search(self,vertexId,comparrissonFun=None):
+        
         if not self.first:
             return False
-        else:    
+        else:
+            
+            
             current=self.first
             while current:
+                
                 if comparrissonFun==None and current.value==vertexId:
                 #si la funcion de comparacion es nula
                 # y el valor actual en el recorrido
@@ -63,11 +73,14 @@ class LinkedList:
 
             return False
         
+
     def get(self,vertexId,comparrisonFun=None):
         
             if not self.first:
                 return None
-            else:    
+            else:
+            
+                
                 current=self.first
                 while current:
                     #si la funcion de comparacion es nula
@@ -84,7 +97,25 @@ class LinkedList:
                     current=current.next
 
                 return None
-                 
+            
+    def remove(self,objetive):
+        if not self.first:
+            return None
+       
+        current=self.first
+        aux2=None
+        while current.next:
+            aux2=current
+            if current.value==objetive:
+                aux2.next=current.next
+                return True
+            current=current.next
+
+        
+        return None
+               
+            
+
     def __len__(self):
         return self.length()
 
@@ -111,3 +142,10 @@ class LinkedList:
 
             result+="]"
             return result
+    
+    def __iter__(self):
+        current=self.first
+        while current:
+            yield current.value
+            current=current.next
+        
